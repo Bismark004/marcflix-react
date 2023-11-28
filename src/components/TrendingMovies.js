@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Trending.css';
+import './TrendingMovies.css';
 import tmdbApi from '../Api/tmdbApi.js';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -36,10 +36,9 @@ function Trending() {
               src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
               alt={movie.title}
             />
-            <div class="details">
+        
               <p>{movie.title}</p>
-
-            </div>
+            
           </SwiperSlide>
         ))}
       </Swiper>
