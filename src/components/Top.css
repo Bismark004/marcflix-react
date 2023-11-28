@@ -1,0 +1,60 @@
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.top {
+    height: 10vh;
+    width: calc(100vw - 16px);
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 5px;
+}
+
+.menu-img {
+    order: 1; 
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    order: 2; 
+}
+
+.logo h2 {
+    margin-top: 8px;
+    margin-left: 8px;
+    color: rgb(192, 3, 3);
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+    max-width: 320px; 
+    height: 80%;
+    border-radius: 8px;
+    order: 3;
+    margin-top: 8px; 
+    background-color: transparent;
+}
+
+input::placeholder {
+    color: white;
+    text-align: center;
+}
+
+@media (max-width: 576px) {
+    input {
+        width: 80%; 
+        max-width: none; 
+        margin: 12px auto; 
+    }
+
+
+
+    
+}
+
