@@ -7,7 +7,6 @@
   .head {
     width: calc(100vw - 24px);
     height: 60px;
-    border: 1px solid red;
     padding: 0 8px;
     display: flex;
     justify-content: space-between;

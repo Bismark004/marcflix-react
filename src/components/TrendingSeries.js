@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './TrendingSeries.css';
-import tmdbApi, { tvType } from '../Api/tmdbApi.js';
+import tmdbApi from '../Api/tmdbApi.js';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
@@ -30,14 +30,14 @@ function TrendingSeries() {
          slidesPerView={4}
          navigation
         >
-        {trendingMovies.map((movie) => (
-          <SwiperSlide key={movie.id}>
+        {trendingMovies.map((tv) => (
+          <SwiperSlide key={tv.id}>
             <img
-              src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
-              alt={movie.title}
+              src={`https://image.tmdb.org/t/p/w342/${tv.poster_path}`}
+              alt={tv.name}
             />
         
-              <p>{tv.title}</p>
+              <p> {tv.original_name}</p>
             
           </SwiperSlide>
         ))}

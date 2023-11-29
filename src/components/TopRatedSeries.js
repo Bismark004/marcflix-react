@@ -37,7 +37,7 @@ function TopRatedSeries() {
               alt={movie.title}
             />
         
-              <p>{movie.title}</p>
+              <p>{movie.original_name}</p>
             
           </SwiperSlide>
         ))}
