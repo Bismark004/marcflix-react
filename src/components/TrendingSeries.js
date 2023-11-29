@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import tmdbApi from '../Api/tmdbApi.js';
+import './TrendingSeries.css';
+import tmdbApi, { tvType } from '../Api/tmdbApi.js';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
-function TopRated() {
+function TrendingSeries() {
   const [trendingMovies, setTrendingMovies] = useState([]);
 
   useEffect(() => {
-    tmdbApi.getMoviesList('top_rated')
+    tmdbApi.getTvList('popular')
       .then(response => {
         setTrendingMovies(response.results);
       })
@@ -17,9 +18,9 @@ function TopRated() {
   }, []);
 
   return (
-    <div className="top-rated">
+    <div className="trending-series">
       <div className="head">
-        <h1>Top-Rated Movies</h1>
+        <h1>Trending Series</h1>
         <div>
           <span>See More<b>&gt;</b></span>
         </div>
@@ -36,7 +37,7 @@ function TopRated() {
               alt={movie.title}
             />
         
-              <p>{movie.title}</p>
+              <p>{tv.title}</p>
             
           </SwiperSlide>
         ))}
@@ -45,4 +46,4 @@ function TopRated() {
   );
 }
 
-export default TopRated;
+export default TrendingSeries;
