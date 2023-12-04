@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './Homepage.css';
+import Trending from './TrendingMovies';
 import Top from './Top';
+import TopRated from './TopRatedMovies.js';
+import TrendingSeries from './TrendingSeries.js';
+import TopRatedSeries from './TopRatedSeries.js';
 import tmdbApi from '../Api/tmdbApi';
 
 function Homepage() {
@@ -29,7 +33,7 @@ function Homepage() {
   return (
     <div className='homepage'>
       <Top handleSearchQuery={handleSearchChange} />
-      {searchQuery && (
+      {searchQuery ? (
         <div className="search-results">
           <h1>Search Results</h1>
           {searchResults.map((movie) => (
@@ -42,6 +46,13 @@ function Homepage() {
             </div>
           ))}
         </div>
+      ) : (
+        <>
+          <Trending />
+          <TopRated />
+          <TrendingSeries />
+          <TopRatedSeries />
+        </>
       )}
     </div>
   );
