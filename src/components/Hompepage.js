@@ -6,11 +6,9 @@ import TopRated from './TopRatedMovies.js';
 import TrendingSeries from './TrendingSeries.js';
 import TopRatedSeries from './TopRatedSeries.js';
 import tmdbApi from '../Api/tmdbApi';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
 
 function Homepage() {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
@@ -28,8 +26,8 @@ function Homepage() {
   }, [searchQuery]);
 
   // Handle search query changes
-  const handleSearchChange = (query) => {
-    setSearchQuery(query);
+  const handleSearchChange = () => {
+    setSearchQuery(!searchQuery);
   };
 
   return (
@@ -38,17 +36,16 @@ function Homepage() {
       {searchQuery ? (
         <div className="search-results">
           <h1>Search Results</h1>
-          <Swiper spaceBetween={100} slidesPerView={4} navigation>
             {searchResults.map((movie) => (
-              <SwiperSlide key={movie.id}>
+              <div className='movie-grid' key={movie.id}>
                 <img
                   src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
                   alt={movie.title}
                 />
                 <p>{movie.title}</p>
-              </SwiperSlide>
+              </div>
+
             ))}
-          </Swiper>
         </div>
       ) : (
         <>
@@ -63,3 +60,4 @@ function Homepage() {
 }
 
 export default Homepage;
+

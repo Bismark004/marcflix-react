@@ -1,61 +1,50 @@
-export const category = {
-    movie: 'movie',
-    tv: 'tv'
+import React, { useState, useEffect } from 'react';
+import './Homepage.css';
+import Top from './Top';
+import tmdbApi from '../Api/tmdbApi';
+
+function Homepage() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+
+  useEffect(() => {
+    if (searchQuery) {
+      // Fetch movies based on the search query
+      tmdbApi
+        .search('movie', { query: searchQuery })
+        .then((response) => {
+          setSearchResults(response.results);
+        })
+        .catch((error) => {
+          console.error('Error fetching search results:', error);
+        });
+    }
+  }, [searchQuery]);
+
+  // Handle search query changes
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  return (
+    <div className='homepage'>
+      <Top handleSearchQuery={handleSearchChange} />
+      {searchQuery && (
+        <div className="search-results">
+          <h1>Search Results</h1>
+          {searchResults.map((movie) => (
+            <div className='movie-grid' key={movie.id}>
+              <img
+                src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
+                alt={movie.title}
+              />
+              <p>{movie.title}</p>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
-export const movieType = {
-    upcoming: 'upcoming',
-    popular: 'popular',
-    top_rated: 'top_rated'
-}
-
-export const tvType = {
-    popular: 'popular',
-    top_rated: 'top_rated',
-    on_the_air: 'on_the_air'
-}
-
-const baseURL = 'https://api.themoviedb.org/3';
-const apiKey = '490977fdf68910dda3102d3f35def0aa';
-
-const tmdbApi = {
-    getMoviesList: async (type, params) => {
-        const url = `${baseURL}/movie/${movieType[type]}?api_key=${apiKey}`;
-        const response = await fetch(url);
-        return response.json();
-    },
-    getTvList: async (type, params) => {
-        const url = `${baseURL}/tv/${tvType[type]}?api_key=${apiKey}`;
-        const response = await fetch(url);
-        return response.json();
-    },
-    getVideos: async (cate, id) => {
-        const url = `${baseURL}/${category[cate]}/${id}/videos?api_key=${apiKey}`;
-        const response = await fetch(url);
-        return response.json();
-    },
-    search: async (cate, params) => {
-        const queryParams = new URLSearchParams(params);
-        const url = `${baseURL}/search/${category[cate]}?api_key=${apiKey}&${queryParams.toString()}`;
-        const response = await fetch(url);
-        return response.json();
-    },
-    detail: async (cate, id, params) => {
-        const queryParams = new URLSearchParams(params);
-        const url = `${baseURL}/${category[cate]}/${id}?api_key=${apiKey}&${queryParams.toString()}`;
-        const response = await fetch(url);
-        return response.json();
-    },
-    credits: async (cate, id) => {
-        const url = `${baseURL}/${category[cate]}/${id}/credits?api_key=${apiKey}`;
-        const response = await fetch(url);
-        return response.json();
-    },
-    similar: async (cate, id) => {
-        const url = `${baseURL}/${category[cate]}/${id}/similar?api_key=${apiKey}`;
-        const response = await fetch(url);
-        return response.json();
-    },
-};
-
-export default tmdbApi;
+export default Homepage;

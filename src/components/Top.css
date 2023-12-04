@@ -39,6 +39,7 @@ input {
     order: 3;
     margin-top: 8px; 
     background-color: transparent;
+    color: #fff;
 }
 
 input::placeholder {
