@@ -6,6 +6,7 @@ import TopRated from './TopRatedMovies.js';
 import TrendingSeries from './TrendingSeries.js';
 import TopRatedSeries from './TopRatedSeries.js';
 import tmdbApi from '../Api/tmdbApi';
+import Search from './search.js';
 
 function Homepage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -34,18 +35,7 @@ function Homepage() {
     <div className='homepage'>
       <Top handleSearchQuery={handleSearchChange} />
       {searchQuery ? (
-        <div className="search-results">
-          <h1>Search Results</h1>
-          {searchResults.map((movie) => (
-            <div className='movie-grid' key={movie.id}>
-              <img
-                src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
-                alt={movie.title}
-              />
-              <p>{movie.title}</p>
-            </div>
-          ))}
-        </div>
+       <Search searchResults={searchResults}/>
       ) : (
         <>
           <Trending />
