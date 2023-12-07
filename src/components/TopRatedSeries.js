@@ -4,6 +4,7 @@ import tmdbApi from '../Api/tmdbApi.js';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
+
 function TopRatedSeries() {
   const [trendingMovies, setTrendingMovies] = useState([]);
 
