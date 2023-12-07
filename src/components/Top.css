@@ -1,6 +1,5 @@
 body {
     padding: 0;
-    margin-bottom: 20vh;
     box-sizing: border-box;
 }
 
@@ -12,6 +11,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding-right: 5px;
+    margin-bottom: 20vh;
 }
 
 .menu-img {

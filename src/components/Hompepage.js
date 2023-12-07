@@ -35,7 +35,6 @@ function Homepage() {
       <Top handleSearchQuery={handleSearchChange} />
       {searchQuery ? (
         <div className="search-results">
-          <h1>Search Results</h1>
           {searchResults.map((movie) => (
             <div className='movie-grid' key={movie.id}>
               <img
