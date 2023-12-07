@@ -26,7 +26,7 @@ function TrendingSeries() {
         </div>
       </div>
         <Swiper
-         spaceBetween={100}
+         spaceBetween={20}
          slidesPerView={4}
          navigation
         >

@@ -1,58 +1,69 @@
+/* TrendingMovies.css */
+
 .trending {
-    margin-top: 20vh;
-    width: calc(100vw - 24px);
-    height: 360px;
-  }
-  
-  .head {
-    width: calc(100vw - 24px);
-    height: 60px;
-    padding: 0 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .head div:hover {
-    cursor: pointer;
-    color: white;
-    background: green;
-  }
-  
-  .head div {
-    border: 1px solid red;
-    border-radius: 16px;
-    color: green;
-    font-weight: 400;
-  }
-  
+  width: calc(100vw - 24px);
+  height: 360px;
+  margin-top: 32px; /* Added for consistency with Homepage.css */
+  padding: 0 16px; /* Added for consistency with Homepage.css */
+}
+
+.head {
+  width: calc(100vw - 24px);
+  height: 60px;
+  padding: 0 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px; /* Added for consistency with Homepage.css */
+}
+
+.head div:hover {
+  cursor: pointer;
+  color: white;
+  background: green;
+}
+
+.head div {
+  border: 1px solid red;
+  border-radius: 16px;
+  color: green;
+  font-weight: 400;
+}
+
+.swiper-slide {
+  flex: 0 0 auto;
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background: rgb(207, 193, 193);
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 240px;
+  border-radius: 8px;
+  transition: transform 0.3s ease; /* Added for hover effect */
+}
+
+.swiper-slide p {
+  text-align: center;
+  margin-top: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Optional: Add hover effect for the images */
+.swiper-slide:hover img {
+  transform: scale(1.05);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
   .swiper-slide {
-    flex: 0 0 auto;
-    height: 700px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    background: rgb(207, 193, 193);
-   
+    max-width: 100%;
   }
-  
-  .swiper-slide img {
-    width: 100%;
-    height: 240px; 
-    border-radius: 8px;
-  }
-  
-  .swiper-slide p {
-    text-align: center;
-    margin-top: 0;
-  }
-  
-  /* Responsive styles */
-  @media (max-width: 768px) {
-    .swiper-slide {
-      max-width: 100%;
-    }
-  }
-  
+}
