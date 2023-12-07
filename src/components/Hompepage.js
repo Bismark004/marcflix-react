@@ -34,20 +34,17 @@ function Homepage() {
     <div className='homepage'>
       <Top handleSearchQuery={handleSearchChange} />
       {searchQuery ? (
-        {searchResults.map((movie) => (
-          <div className='movie-grid' key={movie.id}>
-            {movie.poster_path ? ( // Check if poster_path is available
+        <div className="search-results">
+          {searchResults.map((movie) => (
+            <div className='movie-grid' key={movie.id}>
               <img
-                src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
+                src={movie.poster_path ? `https://image.tmdb.org/t/p/w342/${movie.poster_path}` : '/no-poster.jpg'}
                 alt={movie.title}
               />
-            ) : (
-              <div className="no-poster">No Poster Available</div>
-            )}
-            <p>{movie.title}</p>
-          </div>
-        ))}
-        
+              <p>{movie.title}</p>
+            </div>
+          ))}
+        </div>
       ) : (
         <>
           <Trending />
