@@ -30,15 +30,17 @@ function Homepage() {
     setSearchQuery(event.target.value);
   };
 
+  const filteredResults = searchResults.filter((movie) => movie.poster_path);
+
   return (
     <div className='homepage'>
       <Top handleSearchQuery={handleSearchChange} />
       {searchQuery ? (
         <div className="search-results">
-          {searchResults.map((movie) => (
+          {filteredResults.map((movie) => (
             <div className='movie-grid' key={movie.id}>
               <img
-                src={movie.poster_path ? `https://image.tmdb.org/t/p/w342/${movie.poster_path}` : '/no-poster.jpg'}
+                src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
                 alt={movie.title}
               />
               <p>{movie.title}</p>
