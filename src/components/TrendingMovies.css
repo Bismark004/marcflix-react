@@ -1,15 +1,14 @@
 
 
 .trending {
-  width: calc(100vw - 24px);
+  width: calc(100vw - 20px);
   height: 360px;
   margin-top: 32px; 
-  padding: 0 16px; 
 
 }
 
 .head {
-  width: calc(100vw - 24px);
+  width: calc(100vw - 20px);
   height: 60px;
   padding: 0 8px;
   display: flex;
