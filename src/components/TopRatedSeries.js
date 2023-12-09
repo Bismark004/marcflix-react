@@ -3,6 +3,7 @@ import './TrendingMovies.css';
 import tmdbApi from '../Api/tmdbApi.js';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import './TrendingSeries.css';
 
 
 function TopRatedSeries() {
@@ -19,7 +20,7 @@ function TopRatedSeries() {
   }, []);
 
   return (
-    <div className="top-rated-series">
+    <div className="trending">
       <div className="head">
         <h1>Top-Rated Series</h1>
         <div>

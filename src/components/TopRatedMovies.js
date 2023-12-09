@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import tmdbApi from '../Api/tmdbApi.js';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import './TopRatedMovies.css'
 
 function TopRated() {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -17,7 +18,7 @@ function TopRated() {
   }, []);
 
   return (
-    <div className="top-rated">
+    <div className="trending">
       <div className="head">
         <h1>Top-Rated Movies</h1>
         <div>

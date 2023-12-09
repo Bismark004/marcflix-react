@@ -1,20 +1,23 @@
 
 
 .trending {
-  width: calc(100vw - 20px);
+  width: calc(100vw - 16px);
   height: 360px;
   margin-top: 32px; 
+  border: 1px solid red;
+  
 
 }
 
 .head {
-  width: calc(100vw - 20px);
+  width: calc(100vw-20);
   height: 60px;
   padding: 0 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;                                
+  margin-bottom: 16px;    
+  border: 1px solid blue;                            
 }
 
 .head div:hover {
@@ -32,6 +35,7 @@
 
 .swiper-slide {
   flex: 0 0 auto;
+  width: 100%;
   height: 700px;
   display: flex;
   justify-content: center;

@@ -18,7 +18,7 @@ function TrendingSeries() {
   }, []);
 
   return (
-    <div className="trending-series">
+    <div className="trending">
       <div className="head">
         <h1>Trending Series</h1>
         <div>
