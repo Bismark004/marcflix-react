@@ -20,18 +20,7 @@
   border: 1px solid blue;                            
 }
 
-.head div:hover {
-  cursor: pointer;
-  color: white;
-  background: green;
-}
 
-.head div {
-  border: 1px solid red;
-  border-radius: 16px;
-  color: green;
-  font-weight: 400;
-}
 
 .swiper-slide {
   flex: 0 0 auto;
@@ -60,14 +49,58 @@
   text-overflow: ellipsis;
 }
 
-/* Optional: Add hover effect for the images */
+
 .swiper-slide:hover img {
   transform: scale(1.05);
 }
 
-/* Responsive styles */
+
 @media (max-width: 768px) {
   .swiper-slide {
     max-width: 100%;
   }
 }
+
+
+.btn-content {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 4px 12px;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 16px; /* Adjust font size as needed */
+  color: #ffffff;
+  background: #ff145b80;
+  transition: 1s;
+  border-radius: 16px;
+  box-shadow: 0 0 0.2em 0 var(--color-background);
+}
+
+.btn-content:hover,
+.btn-content:focus {
+  transition: 0.5s;
+  -webkit-animation: btn-content 1s;
+  animation: btn-content 1s;
+  outline: 0.1em solid transparent;
+  outline-offset: 0.2em;
+  box-shadow: 0 0 0.4em 0 var(--color-background);
+}
+
+
+
+@-webkit-keyframes btn-content {
+  0% {
+    outline: 0.2em solid var(--color-background);
+    outline-offset: 0;
+  }
+}
+
+@keyframes btn-content {
+  0% {
+    outline: 0.2em solid var(--color-background);
+    outline-offset: 0;
+  }
+}
+
