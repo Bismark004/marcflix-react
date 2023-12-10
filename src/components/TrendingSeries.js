@@ -22,7 +22,7 @@ function TrendingSeries() {
       <div className="head">
         <h1>Trending Series</h1>
         <div class='btn-container'>
-          <a class='btn-content' href='#'>
+          <a class='btn-content' href>
             <span class='btn-title'>See More <b>&gt;</b></span>
           </a>
         </div>

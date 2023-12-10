@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import tmdbApi from '../Api/tmdbApi.js';
+import './TrendingMovies.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import './TopRatedMovies.css'
+
 
 function TopRated() {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -22,7 +23,7 @@ function TopRated() {
       <div className="head">
         <h1>Top-Rated Movies</h1>
         <div class='btn-container'>
-          <a class='btn-content' href='#'>
+          <a class='btn-content' href>
             <span class='btn-title'>See More <b>&gt;</b></span>
           </a>
         </div>

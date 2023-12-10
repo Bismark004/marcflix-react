@@ -75,7 +75,7 @@
   background: #ff145b80;
   transition: 1s;
   border-radius: 16px;
-  box-shadow: 0 0 0.2em 0 var(--color-background);
+  box-shadow: 0 0 0.2em 0 var(#ff135a);
 }
 
 .btn-content:hover,
@@ -85,21 +85,22 @@
   animation: btn-content 1s;
   outline: 0.1em solid transparent;
   outline-offset: 0.2em;
-  box-shadow: 0 0 0.4em 0 var(--color-background);
+  box-shadow: 0 0 0.4em 0 var(#ff135a);
+  cursor: pointer;
 }
 
 
 
 @-webkit-keyframes btn-content {
   0% {
-    outline: 0.2em solid var(--color-background);
+    outline: 0.2em solid var(#ff135a);
     outline-offset: 0;
   }
 }
 
 @keyframes btn-content {
   0% {
-    outline: 0.2em solid var(--color-background);
+    outline: 0.2em solid var(#ff135a);
     outline-offset: 0;
   }
 }
