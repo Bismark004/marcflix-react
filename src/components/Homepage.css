@@ -25,6 +25,10 @@
     text-align: center;
     margin-bottom: 16px;
   }
+
+  .movie-grid:hover{
+    transform: scale(1.2);
+  }
   
   .movie-grid img {
     max-width: 100%;
