@@ -1,3 +1,5 @@
+ @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
+ 
 
 .top {
     height: 10vh;
@@ -8,6 +10,7 @@
     align-items: center;
     padding-right: 5px;
     margin-bottom: 20vh;
+
 }
 
 .menu-img {
@@ -16,15 +19,26 @@
 
 .logo {
     display: flex;
-    align-items: center;
     order: 2; 
+    align-items: center;
+    
 }
 
 .logo h2 {
-    margin-top: 8px;
-    margin-left: 8px;
-    color: rgb(192, 3, 3);
-    font-weight: 600;
+    color: rgb(212, 47, 47);
+    font-family: 'Black Ops One', cursive;
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 60px;
+    display: block;
+    margin-left: 0;
+    
+}
+
+.logo img{
+    height: 60px;
+    width: 60px;
+
 }
 
 input {

@@ -1,12 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Scribble&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap');
 
 
 .trending {
   width: calc(100vw - 16px);
   height: 360px;
   margin-top: 32px; 
-
-  
-
 }
 
 .head {
@@ -17,8 +16,16 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px; 
-  color: #ff145b80;   
-                           
+  color: #ff145b80;                        
+}
+
+h1{
+  font-family: 'Rubik Scribble', cursive;
+  border: 1px solid red;
+}
+
+p{
+  font-family: "Noto Serif", serif;
 }
 
 
