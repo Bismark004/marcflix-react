@@ -3,18 +3,18 @@ import tmdbApi from '../Api/tmdbApi.js';
 import './TrendingMovies.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-
+import { Link } from 'react-router-dom';
 
 function TopRated() {
-  const [trendingMovies, setTrendingMovies] = useState([]);
+  const [topRatedMovies, setTopRatedMovies] = useState([]);
 
   useEffect(() => {
     tmdbApi.getMoviesList('top_rated')
       .then(response => {
-        setTrendingMovies(response.results);
+        setTopRatedMovies(response.results);
       })
       .catch(error => {
-        console.error('Error fetching popular movies:', error);
+        console.error('Error fetching top-rated movies:', error);
       });
   }, []);
 
@@ -22,26 +22,26 @@ function TopRated() {
     <div className="trending">
       <div className="head">
         <h1>Top-Rated Movies</h1>
-        <div class='btn-container'>
-          <a class='btn-content' href>
-            <span class='btn-title'>See More <b>&gt;</b></span>
+        <div className='btn-container'>
+          <a className='btn-content' href="/">
+            <span className='btn-title'>See More <b>&gt;</b></span>
           </a>
         </div>
       </div>
-        <Swiper
-         spaceBetween={20}
-         slidesPerView={4}
-         navigation
-        >
-        {trendingMovies.map((movie) => (
+      <Swiper
+        spaceBetween={20}
+        slidesPerView={4}
+        navigation
+      >
+        {topRatedMovies.map((movie) => (
           <SwiperSlide key={movie.id}>
-            <img
-              src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
-              alt={movie.title}
-            />
-        
+            <Link to={`/movie/${movie.id}`}>
+              <img
+                src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
+                alt={movie.title}
+              />
               <p>{movie.title}</p>
-            
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>

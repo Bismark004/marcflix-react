@@ -4,18 +4,18 @@ import tmdbApi from '../Api/tmdbApi.js';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import './TrendingSeries.css';
-
+import { Link } from 'react-router-dom';
 
 function TopRatedSeries() {
-  const [trendingMovies, setTrendingMovies] = useState([]);
+  const [topRatedSeries, setTopRatedSeries] = useState([]);
 
   useEffect(() => {
     tmdbApi.getTvList('top_rated')
       .then(response => {
-        setTrendingMovies(response.results);
+        setTopRatedSeries(response.results);
       })
       .catch(error => {
-        console.error('Error fetching popular movies:', error);
+        console.error('Error fetching top-rated series:', error);
       });
   }, []);
 
@@ -23,26 +23,26 @@ function TopRatedSeries() {
     <div className="trending">
       <div className="head">
         <h1>Top-Rated Series</h1>
-        <div class='btn-container'>
-          <a class='btn-content' href>
-            <span class='btn-title'>See More <b>&gt;</b></span>
+        <div className='btn-container'>
+          <a className='btn-content' href="/">
+            <span className='btn-title'>See More <b>&gt;</b></span>
           </a>
         </div>
       </div>
-        <Swiper
-         spaceBetween={20}
-         slidesPerView={4}
-         navigation
-        >
-        {trendingMovies.map((movie) => (
-          <SwiperSlide key={movie.id}>
-            <img
-              src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
-              alt={movie.title}
-            />
-        
-              <p>{movie.original_name}</p>
-            
+      <Swiper
+        spaceBetween={20}
+        slidesPerView={4}
+        navigation
+      >
+        {topRatedSeries.map((series) => (
+          <SwiperSlide key={series.id}>
+            <Link to={`/tv/${series.id}`}>
+              <img
+                src={`https://image.tmdb.org/t/p/w342/${series.poster_path}`}
+                alt={series.original_name}
+              />
+              <p>{series.original_name}</p>
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>
