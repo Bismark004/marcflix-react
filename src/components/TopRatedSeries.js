@@ -1,23 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import './TrendingMovies.css';
+import './TrendingSeries.css';
 import tmdbApi from '../Api/tmdbApi.js';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import './TrendingSeries.css';
 import { Link } from 'react-router-dom';
 
 function TopRatedSeries() {
   const [topRatedSeries, setTopRatedSeries] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     tmdbApi.getTvList('top_rated')
       .then(response => {
         setTopRatedSeries(response.results);
+        setLoading(false);
       })
       .catch(error => {
         console.error('Error fetching top-rated series:', error);
+        setError('Error fetching data. Please try again later.');
+        setLoading(false);
       });
   }, []);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
 
   return (
     <div className="trending">

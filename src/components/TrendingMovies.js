@@ -7,16 +7,29 @@ import { Link } from 'react-router-dom';
 
 function Trending() {
   const [trendingMovies, setTrendingMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     tmdbApi.getMoviesList('popular')
       .then(response => {
         setTrendingMovies(response.results);
+        setLoading(false);
       })
       .catch(error => {
         console.error('Error fetching popular movies:', error);
+        setError('Error fetching data. Please try again later.');
+        setLoading(false);
       });
   }, []);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
 
   return (
     <div className="trending">
