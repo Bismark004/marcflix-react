@@ -1,31 +1,61 @@
-import React, { useState, useEffect } from 'react';
-import tmdbApi from '../Api/tmdbApi';
-
-function MovieDetails({ match }) {
-  const [movieDetails, setMovieDetails] = useState(null);
-
-  useEffect(() => {
-    const movieId = match.params.id;
-
-    tmdbApi.detail('movie', movieId)
-      .then(response => {
-        setMovieDetails(response);
-      })
-      .catch(error => {
-        console.error('Error fetching movie details:', error);
-      });
-  }, [match.params.id]);
-
-  if (!movieDetails) {
-    return <div>Loading...</div>;
-  }
-
-  return (
-    <div>
-      <h1>{movieDetails.title}</h1>
-      {/* Render other movie details here */}
-    </div>
-  );
+export const category = {
+    movie: 'movie',
+    tv: 'tv'
 }
 
-export default MovieDetails;
+export const movieType = {
+    upcoming: 'upcoming',
+    popular: 'popular',
+    top_rated: 'top_rated'
+}
+
+export const tvType = {
+    popular: 'popular',
+    top_rated: 'top_rated',
+    on_the_air: 'on_the_air'
+}
+
+const baseURL = 'https://api.themoviedb.org/3';
+const apiKey = '8daab53e806e1a389e43ee17bc9cdff8';
+
+const tmdbApi = {
+    getMoviesList: async (type, params) => {
+        const url = `${baseURL}/movie/${movieType[type]}?api_key=${apiKey}`;
+        const response = await fetch(url);
+        return response.json();
+    },
+    getTvList: async (type, params) => {
+        const url = `${baseURL}/tv/${tvType[type]}?api_key=${apiKey}`;
+        const response = await fetch(url);
+        return response.json();
+    },
+    getVideos: async (cate, id) => {
+        const url = `${baseURL}/${category[cate]}/${id}/videos?api_key=${apiKey}`;
+        const response = await fetch(url);
+        return response.json();
+    },
+    search: async (cate, params) => {
+        const queryParams = new URLSearchParams(params);
+        const url = `${baseURL}/search/${category[cate]}?api_key=${apiKey}&${queryParams.toString()}`;
+        const response = await fetch(url);
+        return response.json();
+    },
+    detail: async (cate, id, params) => {
+        const queryParams = new URLSearchParams(params);
+        const url = `${baseURL}/${category[cate]}/${id}?api_key=${apiKey}&${queryParams.toString()}`;
+        const response = await fetch(url);
+        return response.json();
+    },
+    credits: async (cate, id) => {
+        const url = `${baseURL}/${category[cate]}/${id}/credits?api_key=${apiKey}`;
+        const response = await fetch(url);
+        return response.json();
+    },
+    similar: async (cate, id) => {
+        const url = `${baseURL}/${category[cate]}/${id}/similar?api_key=${apiKey}`;
+        const response = await fetch(url);
+        return response.json();
+    },
+};
+
+export default tmdbApi;
