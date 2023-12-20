@@ -18,6 +18,11 @@ function TopRated() {
       });
   }, []);
 
+  // Check if topRatedMovies is not yet defined or is empty
+  if (!topRatedMovies || topRatedMovies.length === 0) {
+    return <p>Loading...</p>; // or some loading indicator
+  }
+
   return (
     <div className="trending">
       <div className="head">
