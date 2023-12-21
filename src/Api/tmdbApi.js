@@ -16,7 +16,7 @@ export const tvType = {
 }
 
 const baseURL = 'https://api.themoviedb.org/3';
-const apiKey = '8daab53e806e1a389e43ee17bc9cdff8';
+const apiKey = '490977fdf68910dda3102d3f35def0aa';
 
 const tmdbApi = {
     getMoviesList: async (type, params) => {

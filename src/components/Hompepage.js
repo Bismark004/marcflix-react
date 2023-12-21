@@ -6,10 +6,8 @@ import TopRated from './TopRatedMovies.js';
 import TrendingSeries from './TrendingSeries.js';
 import TopRatedSeries from './TopRatedSeries.js';
 import tmdbApi from '../Api/tmdbApi';
-import { Link } from 'react-router-dom';
 
-
-function Homepage(  { movie }) {
+function Homepage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
@@ -40,7 +38,6 @@ function Homepage(  { movie }) {
       {searchQuery ? (
         <div className="search-results">
           {filteredResults.map((movie) => (
-            <Link to={`/movie/${movie.id}`}>
             <div className='movie-grid' key={movie.id}>
               <img
                 src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
@@ -48,7 +45,6 @@ function Homepage(  { movie }) {
               />
               <p>{movie.title}</p>
             </div>
-            </Link>
           ))}
         </div>
       ) : (

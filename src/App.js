@@ -1,17 +1,15 @@
-import React from 'react';
-import { BrowserRouter as Router, Route,  Routes } from 'react-router-dom';
-import Homepage from './components/Hompepage';
-import MovieDetails from './pages/MovieDetails';
+import './App.css'
+import Homepage from "./components/Hompepage";
+
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route exact path="/"  element={<Homepage/>} />
-        <Route path="/movie/:id" element={<MovieDetails/>} />
-      </Routes>
-    </Router>
-  );
-}
+    <div>
+      <Homepage />
 
+
+
+    </div>
+  )
+}
 export default App;
