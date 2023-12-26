@@ -1,12 +1,11 @@
-// TopRated.js
 import React, { useState, useEffect } from 'react';
 import tmdbApi from '../Api/tmdbApi.js';
 import './TrendingMovies.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import { Link } from 'react-router-dom'; // Import Link directly from 'react-router-dom'
 
-
-function TopRated({Link}) {
+function TopRated() {
   const [trendingMovies, setTrendingMovies] = useState([]);
 
   useEffect(() => {
@@ -36,7 +35,6 @@ function TopRated({Link}) {
       >
         {trendingMovies.map((movie) => (
           <Link to={`/movie/${movie.id}`} key={movie.id} >
-          
             <SwiperSlide key={movie.id}>
               <img
                 src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
@@ -44,7 +42,7 @@ function TopRated({Link}) {
               />
               <p>{movie.title}</p>
             </SwiperSlide>
-            </Link>
+          </Link>
         ))}
       </Swiper>
     </div>

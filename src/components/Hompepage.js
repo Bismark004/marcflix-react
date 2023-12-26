@@ -7,6 +7,7 @@ import TrendingSeries from './TrendingSeries.js';
 import TopRatedSeries from './TopRatedSeries.js';
 import tmdbApi from '../Api/tmdbApi';
 import { Link, Outlet } from 'react-router-dom';
+import TopTrending from './Top-Trending.js';
 
 function Homepage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -52,10 +53,7 @@ function Homepage() {
         </div>
       ) : (
         <>
-          <Trending Link={Link} />
-          <TopRated  Link={Link}/>
-          <TrendingSeries Link={Link}/>
-          <TopRatedSeries Link={Link}/>
+          <TopTrending/>
         </>
       )}
       <Outlet/>
