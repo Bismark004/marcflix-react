@@ -1,6 +1,7 @@
 import './App.css'
 import Homepage from "./components/Hompepage";
-import { BrowserRouter, Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter,  Routes, Route } from 'react-router-dom';
+import MovieDetails from './pages/MovieDetails';
 
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Homepage/>}/>
+        <Route path='movie/:id' element={<MovieDetails/>} />
       </Routes>
     </BrowserRouter>
   )
