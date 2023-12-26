@@ -4,7 +4,7 @@ import tmdbApi from '../Api/tmdbApi.js';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
-function Trending() {
+function Trending(Link) {
   const [trendingMovies, setTrendingMovies] = useState([]);
 
   useEffect(() => {

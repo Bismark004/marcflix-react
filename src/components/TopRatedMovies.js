@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
 
-function TopRated() {
+function TopRated({Link}) {
   const [trendingMovies, setTrendingMovies] = useState([]);
 
   useEffect(() => {

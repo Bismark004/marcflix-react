@@ -52,10 +52,10 @@ function Homepage() {
         </div>
       ) : (
         <>
-          <Trending />
-          <TopRated />
-          <TrendingSeries />
-          <TopRatedSeries />
+          <Trending Link={Link} />
+          <TopRated  Link={Link}/>
+          <TrendingSeries Link={Link}/>
+          <TopRatedSeries Link={Link}/>
         </>
       )}
       <Outlet/>
