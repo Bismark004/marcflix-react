@@ -6,7 +6,7 @@ import 'swiper/css';
 import './TrendingSeries.css';
 
 
-function TopRatedSeries() {
+function TopRatedSeries({ Link}) {
   const [trendingMovies, setTrendingMovies] = useState([]);
 
   useEffect(() => {
@@ -35,6 +35,7 @@ function TopRatedSeries() {
          navigation
         >
         {trendingMovies.map((movie) => (
+          <Link to={`/movie/${movie.id}`} key={movie.id} >
           <SwiperSlide key={movie.id}>
             <img
               src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
@@ -44,6 +45,7 @@ function TopRatedSeries() {
               <p>{movie.original_name}</p>
             
           </SwiperSlide>
+          </Link>
         ))}
       </Swiper>
     </div>

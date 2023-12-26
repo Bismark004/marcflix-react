@@ -35,6 +35,7 @@ function TopRated({Link}) {
         navigation
       >
         {trendingMovies.map((movie) => (
+          <Link to={`/movie/${movie.id}`} key={movie.id} >
           
             <SwiperSlide key={movie.id}>
               <img
@@ -43,6 +44,7 @@ function TopRated({Link}) {
               />
               <p>{movie.title}</p>
             </SwiperSlide>
+            </Link>
         ))}
       </Swiper>
     </div>

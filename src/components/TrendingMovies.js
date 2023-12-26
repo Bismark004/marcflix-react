@@ -33,6 +33,7 @@ function Trending(Link) {
          navigation
         >
         {trendingMovies.map((movie) => (
+          <Link to={`/movie/${movie.id}`} key={movie.id} >
           <SwiperSlide key={movie.id}>
             <img
               src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
@@ -42,6 +43,7 @@ function Trending(Link) {
               <p>{movie.title}</p>
             
           </SwiperSlide>
+          </Link>
         ))}
       </Swiper>
     </div>
