@@ -3,7 +3,7 @@ import tmdbApi from '../Api/tmdbApi.js';
 import './TrendingMovies.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import { Link } from 'react-router-dom'; // Import Link directly from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom';
 
 function TopRated() {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -45,6 +45,7 @@ function TopRated() {
           </Link>
         ))}
       </Swiper>
+      <Outlet/>
     </div>
   );
 }
