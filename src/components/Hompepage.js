@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './Homepage.css';
-import Trending from './TrendingMovies';
 import Top from './Top';
-import TopRated from './TopRatedMovies.js';
-import TrendingSeries from './TrendingSeries.js';
-import TopRatedSeries from './TopRatedSeries.js';
 import tmdbApi from '../Api/tmdbApi';
-import { Link, Outlet } from 'react-router-dom';
 import TopTrending from './Top-Trending.js';
-
+import SearchResults from './SearchResults.js';
 function Homepage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -38,25 +33,13 @@ function Homepage() {
     <div className='homepage'>
       <Top handleSearchQuery={handleSearchChange} />
       {searchQuery ? (
-        <div className="search-results">
-          {filteredResults.map((movie) => (
-            <Link to={`/movie/${movie.id}`} key={movie.id} >
-            <div className='movie-grid' key={movie.id}>
-              <img
-                src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
-                alt={movie.title}
-              />
-              <p>{movie.title}</p>
-            </div>
-            </Link>
-          ))}
-        </div>
+        <SearchResults filteredResults={filteredResults}/>
+       
       ) : (
         <>
           <TopTrending/>
         </>
       )}
-      <Outlet/>
     </div>
   );
 }
