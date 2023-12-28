@@ -34,15 +34,16 @@ function TopRated() {
         navigation
       >
         {trendingMovies.map((movie) => (
-          <Link to={`/movie/${movie.id}`} key={movie.id} >
             <SwiperSlide key={movie.id}>
+            <Link to={`/movie/${movie.id}`} key={movie.id} >
               <img
                 src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
                 alt={movie.title}
               />
               <p>{movie.title}</p>
+              </Link>
             </SwiperSlide>
-          </Link>
+          
         ))}
       </Swiper>
       <Outlet/>
