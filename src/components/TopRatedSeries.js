@@ -4,6 +4,7 @@ import tmdbApi from '../Api/tmdbApi.js';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import './TrendingSeries.css';
+import {  Outlet } from 'react-router-dom';
 
 
 function TopRatedSeries({ Link}) {
@@ -32,8 +33,7 @@ function TopRatedSeries({ Link}) {
         <Swiper
          spaceBetween={20}
          slidesPerView={4}
-         navigation
-        >
+         navigation>
         {trendingMovies.map((movie) => (
           
           <SwiperSlide key={movie.id}>
@@ -44,12 +44,13 @@ function TopRatedSeries({ Link}) {
             />
         
               <p>{movie.original_name}</p>
-            </Link>
             
+            </Link>
           </SwiperSlide>
           
         ))}
       </Swiper>
+      <Outlet/>
     </div>
   );
 }

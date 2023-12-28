@@ -3,9 +3,10 @@ import './TrendingMovies.css';
 import tmdbApi from '../Api/tmdbApi.js';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import { Link, Outlet } from 'react-router-dom';
 
 
-function Trending({ Link }) {
+function Trending() {
   const [trendingMovies, setTrendingMovies] = useState([]);
 
   useEffect(() => {
@@ -29,22 +30,24 @@ function Trending({ Link }) {
         </div>
       </div>
       <Swiper
-        spaceBetween={20}
-        slidesPerView={4}
-        navigation
-      >
+         spaceBetween={20}
+         slidesPerView={4}
+         navigation>
         {trendingMovies.map((movie) => (
-          <Link to={`/movie/${movie.id}`} key={movie.id} >
+          
             <SwiperSlide key={movie.id}>
+              <Link to={`/movie/${movie.id}`} key={movie.id} >
               <img
                 src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
                 alt={movie.title}
               />
               <p>{movie.title}</p>
+              </Link>
             </SwiperSlide>
-          </Link>
+          
         ))}
       </Swiper>
+      <Outlet/>
     </div>
   );
 }

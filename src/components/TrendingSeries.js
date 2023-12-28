@@ -3,6 +3,7 @@ import './TrendingSeries.css';
 import tmdbApi from '../Api/tmdbApi.js';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import {  Outlet } from 'react-router-dom';
 
 function TrendingSeries({Link}) {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -32,21 +33,21 @@ function TrendingSeries({Link}) {
          slidesPerView={4}
          navigation>
         
-        {trendingMovies.map((tv) => (
+        {trendingMovies.map((movie) => (
           
-          <SwiperSlide key={tv.id}>
-            <Link to={`/tv/${tv.id}`} key={tv.id} >
-            <img
-              src={`https://image.tmdb.org/t/p/w342/${tv.poster_path}`}
-              alt={tv.name}
+          <SwiperSlide key={movie.id}>
+           <Link to={`/movie/${movie.id}`} key={movie.id} >
+           <img
+              src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
+              alt={movie.name}
             />
         
-              <p> {tv.original_name}</p>
-            
-            </Link>
+              <p> {movie.original_name}</p>
+           </Link>
           </SwiperSlide>
         ))}
       </Swiper>
+      <Outlet/>
     </div>
   );
 }
