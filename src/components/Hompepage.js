@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './Homepage.css';
 import Top from './Top';
-import tmdbApi from '../Api/tmdbApi';
-import TopTrending from './Top-Trending.js';
+import tmdbApi from '../Api/tmdbApi'
 import SearchResults from './SearchResults.js';
+import TopRated from './TopRatedMovies.js';
+import Trending from './TrendingMovies.js';
+import TopRatedSeries from './TopRatedSeries.js';
+import TrendingSeries from './TrendingSeries.js';
+
+
+
+
 function Homepage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -37,7 +44,11 @@ function Homepage() {
        
       ) : (
         <>
-          <TopTrending/>
+            <Trending/>
+            <TopRated/>
+            <TopRatedSeries/>
+            <TrendingSeries/>
+            
         </>
       )}
     </div>

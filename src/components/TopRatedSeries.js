@@ -4,10 +4,10 @@ import tmdbApi from '../Api/tmdbApi.js';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import './TrendingSeries.css';
-import {  Outlet } from 'react-router-dom';
+import {  Link, Outlet } from 'react-router-dom';
 
 
-function TopRatedSeries({ Link}) {
+function TopRatedSeries() {
   const [trendingMovies, setTrendingMovies] = useState([]);
 
   useEffect(() => {
