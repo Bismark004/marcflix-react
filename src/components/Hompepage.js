@@ -3,11 +3,7 @@ import './Homepage.css';
 import Top from './Top';
 import tmdbApi from '../Api/tmdbApi'
 import SearchResults from './SearchResults.js';
-import TopRated from './TopRatedMovies.js';
-import Trending from './TrendingMovies.js';
-import TopRatedSeries from './TopRatedSeries.js';
-import TrendingSeries from './TrendingSeries.js';
-
+import TopTrending from './Top-Trending.js';
 
 
 
@@ -44,10 +40,7 @@ function Homepage() {
        
       ) : (
         <>
-            <Trending/>
-            <TopRated/>
-            <TopRatedSeries/>
-            <TrendingSeries/>
+           <TopTrending/>
             
         </>
       )}
