@@ -1,0 +1,15 @@
+/* MovieDetails.css */
+.movie-details {
+    padding: 20px;
+  }
+  
+  .title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .overview {
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
+  

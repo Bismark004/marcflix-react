@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import tmdbApi from '../Api/tmdbApi';
+import './MovieDetails.css';
 
 function MovieDetails() {
   const { id } = useParams();
@@ -20,13 +21,13 @@ function MovieDetails() {
   }, [id]);
 
   if (!movieDetails) {
-    return <div>Loading...</div>;
+    return <div className="loading">Loading...</div>;
   }
 
   return (
-    <div className='movie-details'>
-      <h2>{movieDetails.title}</h2>
-      <p>{movieDetails.overview}</p>
+    <div className="movie-details">
+      <h2 className="title">{movieDetails.title}</h2>
+      <p className="overview">{movieDetails.overview}</p>
     </div>
   );
 }
