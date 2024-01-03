@@ -1,15 +1,56 @@
 /* MovieDetails.css */
 .movie-details {
-    padding: 20px;
-  }
-  
-  .title {
-    font-size: 2rem;
+  position: relative;
+}
+
+.backdrop {
+  height: 50vh;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 20px;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.overview {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.cast {
+  margin-top: 20px;
+
+  h3 {
+    font-size: 1.5rem;
     margin-bottom: 10px;
   }
-  
-  .overview {
-    font-size: 1.2rem;
-    line-height: 1.5;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      font-size: 1rem;
+    }
   }
-  
+}

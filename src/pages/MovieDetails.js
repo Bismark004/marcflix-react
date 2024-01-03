@@ -24,10 +24,27 @@ function MovieDetails() {
     return <div className="loading">Loading...</div>;
   }
 
+  const backdropUrl = `https://image.tmdb.org/t/p/original/${movieDetails.backdrop_path || movieDetails.poster_path}`;
+
   return (
     <div className="movie-details">
-      <h2 className="title">{movieDetails.title}</h2>
-      <p className="overview">{movieDetails.overview}</p>
+      <div className="backdrop" style={{ backgroundImage: `url(${backdropUrl})` }}>
+        <div className="overlay">
+          <h2 className="title">{movieDetails.title}</h2>
+          <p className="overview">{movieDetails.overview}</p>
+        </div>
+      </div>
+      {/* Add cast rendering if available */}
+      {movieDetails.credits && movieDetails.credits.cast && (
+        <div className="cast">
+          <h3>Cast</h3>
+          <ul>
+            {movieDetails.credits.cast.slice(0, 5).map((castMember) => (
+              <li key={castMember.id}>{castMember.name}</li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
