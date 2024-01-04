@@ -1,4 +1,4 @@
-// MovieDetails.js
+// MovieDetails.js (from the second app)
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import tmdbApi from '../Api/tmdbApi';
@@ -41,6 +41,27 @@ function MovieDetails() {
           <ul>
             {movieDetails.credits.cast.slice(0, 5).map((castMember) => (
               <li key={castMember.id}>{castMember.name}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {/* Add video rendering if available */}
+      {movieDetails.videos && movieDetails.videos.results && (
+        <div className="videos">
+          <h3>Videos</h3>
+          <ul>
+            {movieDetails.videos.results.slice(0, 5).map((video) => (
+              <li key={video.id}>
+                <iframe
+                  width="560"
+                  height="315"
+                  src={`https://www.youtube.com/embed/${video.key}`}
+                  title={video.name}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </li>
             ))}
           </ul>
         </div>
