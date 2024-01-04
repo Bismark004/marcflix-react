@@ -1,19 +1,21 @@
+// tmdbApi.js
+
 export const category = {
     movie: 'movie',
     tv: 'tv'
-}
+};
 
 export const movieType = {
     upcoming: 'upcoming',
     popular: 'popular',
     top_rated: 'top_rated'
-}
+};
 
 export const tvType = {
     popular: 'popular',
     top_rated: 'top_rated',
     on_the_air: 'on_the_air'
-}
+};
 
 const baseURL = 'https://api.themoviedb.org/3';
 const apiKey = '490977fdf68910dda3102d3f35def0aa';
@@ -42,9 +44,20 @@ const tmdbApi = {
     },
     detail: async (cate, id, params) => {
         const queryParams = new URLSearchParams(params);
-        const url = `${baseURL}/${category[cate]}/${id}?api_key=${apiKey}&${queryParams.toString()}`;
-        const response = await fetch(url);
-        return response.json();
+        const detailsUrl = `${baseURL}/${category[cate]}/${id}?api_key=${apiKey}&${queryParams.toString()}`;
+        const creditsUrl = `${baseURL}/${category[cate]}/${id}/credits?api_key=${apiKey}`;
+
+        // Fetch both details and credits concurrently
+        const [detailsResponse, creditsResponse] = await Promise.all([
+            fetch(detailsUrl),
+            fetch(creditsUrl),
+        ]);
+
+        const detailsData = await detailsResponse.json();
+        const creditsData = await creditsResponse.json();
+
+        // Combine details and credits data
+        return { ...detailsData, credits: { cast: creditsData.cast } };
     },
     credits: async (cate, id) => {
         const url = `${baseURL}/${category[cate]}/${id}/credits?api_key=${apiKey}`;
