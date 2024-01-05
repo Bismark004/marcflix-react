@@ -1,4 +1,3 @@
-// MovieDetails.js (from the second app)
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import tmdbApi from '../Api/tmdbApi';
@@ -24,48 +23,29 @@ function MovieDetails() {
     return <div className="loading">Loading...</div>;
   }
 
+  const posterUrl = `https://image.tmdb.org/t/p/w342/${movieDetails.poster_path}`;
   const backdropUrl = `https://image.tmdb.org/t/p/original/${movieDetails.backdrop_path || movieDetails.poster_path}`;
 
   return (
     <div className="movie-details">
       <div className="backdrop" style={{ backgroundImage: `url(${backdropUrl})` }}>
         <div className="overlay">
-          <h2 className="title">{movieDetails.title}</h2>
-          <p className="overview">{movieDetails.overview}</p>
+          <div className="movie-content__poster">
+            <div className="movie-content__poster__img" style={{ backgroundImage: `url(${posterUrl})` }}></div>
+          </div>
+          <div className="movie-content__info">
+            <h1 className="title">
+              {movieDetails.title}
+            </h1>
+            <div className="genres">
+              {movieDetails.genres && movieDetails.genres.slice(0, 5).map((genre, i) => (
+                <span key={i} className="genres__item">{genre.name}</span>
+              ))}
+            </div>
+            <p className="overview">{movieDetails.overview}</p>
+          </div>
         </div>
       </div>
-      {/* Add cast rendering if available */}
-      {movieDetails.credits && movieDetails.credits.cast && (
-        <div className="cast">
-          <h3>Cast</h3>
-          <ul>
-            {movieDetails.credits.cast.slice(0, 5).map((castMember) => (
-              <li key={castMember.id}>{castMember.name}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-      {/* Add video rendering if available */}
-      {movieDetails.videos && movieDetails.videos.results && (
-        <div className="videos">
-          <h3>Videos</h3>
-          <ul>
-            {movieDetails.videos.results.slice(0, 5).map((video) => (
-              <li key={video.id}>
-                <iframe
-                  width="560"
-                  height="315"
-                  src={`https://www.youtube.com/embed/${video.key}`}
-                  title={video.name}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
     </div>
   );
 }
