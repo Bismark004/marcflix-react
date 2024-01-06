@@ -6,17 +6,25 @@ import './MovieDetails.css';
 function MovieDetails() {
   const { id } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
+  const [casts, setCasts] = useState([]); // Add state for casts
 
   useEffect(() => {
     // Fetch movie details based on the movie ID
-    tmdbApi
-      .detail('movie', id)
-      .then((response) => {
-        setMovieDetails(response);
-      })
-      .catch((error) => {
-        console.error('Error fetching movie details:', error);
-      });
+    const fetchMovieDetails = async () => {
+      try {
+        // Fetch movie details
+        const movieResponse = await tmdbApi.detail('movie', id);
+        setMovieDetails(movieResponse);
+
+        // Fetch cast details
+        const castResponse = await tmdbApi.credits('movie', id);
+        setCasts(castResponse.cast.slice(0, 5));
+      } catch (error) {
+        console.error('Error fetching movie details or cast:', error);
+      }
+    };
+
+    fetchMovieDetails();
   }, [id]);
 
   if (!movieDetails) {
@@ -28,21 +36,37 @@ function MovieDetails() {
 
   return (
     <div className="movie-details">
-      <div className="backdrop" style={{ backgroundImage: `url(${backdropUrl})` }}>
-        <div className="overlay">
-          <div className="movie-content__poster">
-            <div className="movie-content__poster__img" style={{ backgroundImage: `url(${posterUrl})` }}></div>
+      <div className="banner" style={{ backgroundImage: `url(${backdropUrl})` }}></div>
+      <div className="movie-content">
+        <div className="movie-content__poster">
+          <div className="movie-content__poster__img" style={{ backgroundImage: `url(${posterUrl})` }}></div>
+        </div>
+        <div className="movie-content__info">
+          <h1 className="title">{movieDetails.title || movieDetails.name}</h1>
+          <div className="genres">
+            {movieDetails.genres && movieDetails.genres.slice(0, 5).map((genre, i) => (
+              <span key={i} className="genres__item">{genre.name}</span>
+            ))}
           </div>
-          <div className="movie-content__info">
-            <h1 className="title">
-              {movieDetails.title}
-            </h1>
-            <div className="genres">
-              {movieDetails.genres && movieDetails.genres.slice(0, 5).map((genre, i) => (
-                <span key={i} className="genres__item">{genre.name}</span>
+          <p className="overview">{movieDetails.overview}</p>
+          {/* Cast rendering */}
+          <div className="cast">
+            <div className="section__header">
+              <h2>Casts</h2>
+            </div>
+            <div className="casts">
+              {casts.map((item, i) => (
+                <div key={i} className="casts__item">
+                  <div
+                    className="casts__item__img"
+                    style={{
+                      backgroundImage: `url(https://image.tmdb.org/t/p/w500${item.profile_path})`,
+                    }}
+                  ></div>
+                  <p className="casts__item__name">{item.name}</p>
+                </div>
               ))}
             </div>
-            <p className="overview">{movieDetails.overview}</p>
           </div>
         </div>
       </div>
