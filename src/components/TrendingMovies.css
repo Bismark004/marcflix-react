@@ -1,39 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Scribble&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap');
 
-
 .trending {
   width: calc(100vw - 16px);
   height: 360px;
-  margin-top: 32px; 
+  margin-top: 32px;
   background-color: #0f0f0f;
 }
 
 .head {
-  width: calc(100vw-20);
+  width: calc(100vw - 20);
   height: 60px;
   padding: 0 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px; 
-  color: #ff145b80;                        
+  margin-bottom: 16px;
+  color: #ff145b80;
 }
 
-.head h1{
+.head h1 {
   font-family: 'Rubik Scribble', cursive;
   border: 1px solid red;
 }
 
-.trending p{
+.trending p {
   font-family: "Noto Serif", serif;
 }
-
-swiper {
-  background-color: #0f0f0f;
-}
-
-
 
 .swiper-slide {
   flex: 0 0 auto;
@@ -44,15 +37,14 @@ swiper {
   align-items: center;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  background: rgb(207, 193, 193);
-  transition: transform 0.3s ease; 
+  background: inherit;
+  transition: transform 0.3s ease;
 }
 
 .swiper-slide img {
   width: 100%;
   height: 240px;
   border-radius: 8px;
- 
 }
 
 .swiper-slide p {
@@ -61,20 +53,26 @@ swiper {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: white;
 }
 
-
-.swiper-slide:hover  {
+.swiper-slide:hover {
   transform: scale(1.05);
 }
-
 
 @media (max-width: 768px) {
   .swiper-slide {
     max-width: 100%;
   }
-}
 
+  .movie-content__poster {
+    display: none;
+  }
+
+  .movie-content__info {
+    text-align: center;
+  }
+}
 
 .btn-content {
   display: flex;
@@ -84,12 +82,12 @@ swiper {
   text-decoration: none;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
-  font-size: 16px; /* Adjust font size as needed */
+  font-size: 16px;
   color: #ffffff;
   background: #ff145b80;
   transition: 1s;
   border-radius: 16px;
-  box-shadow: 0 0 0.2em 0 var(#ff135a);
+  box-shadow: 0 0 0.2em 0 var(--ff135a);
 }
 
 .btn-content:hover,
@@ -99,24 +97,21 @@ swiper {
   animation: btn-content 1s;
   outline: 0.1em solid transparent;
   outline-offset: 0.2em;
-  box-shadow: 0 0 0.4em 0 var(#ff135a);
+  box-shadow: 0 0 0.4em 0 var(--ff135a);
   cursor: pointer;
   transform: scale(1.1);
 }
 
-
-
 @-webkit-keyframes btn-content {
   0% {
-    outline: 0.2em solid var(#ff135a);
+    outline: 0.2em solid var(--ff135a);
     outline-offset: 0;
   }
 }
 
 @keyframes btn-content {
   0% {
-    outline: 0.2em solid var(#ff135a);
+    outline: 0.2em solid var(--ff135a);
     outline-offset: 0;
   }
 }
-
