@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import tmdbApi from '../Api/tmdbApi';
+import VideoList from './VideoList';  // Import VideoList component
 import './MovieDetails.css';
+import SimilarMovies from '../components/SimilarMovies';
+
 
 function MovieDetails() {
   const { id } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
-  const [casts, setCasts] = useState([]); // Add state for casts
+  const [casts, setCasts] = useState([]);
 
   useEffect(() => {
-    // Fetch movie details based on the movie ID
     const fetchMovieDetails = async () => {
       try {
-        // Fetch movie details
         const movieResponse = await tmdbApi.detail('movie', id);
         setMovieDetails(movieResponse);
 
-        // Fetch cast details
         const castResponse = await tmdbApi.credits('movie', id);
         setCasts(castResponse.cast.slice(0, 5));
       } catch (error) {
@@ -36,7 +36,7 @@ function MovieDetails() {
 
   return (
     <div className="movie-details">
-      <div className="banner" style={{ backgroundImage: `url(${backdropUrl})` }}></div>
+       <div className="banner" style={{ backgroundImage: `url(${backdropUrl})` }}></div>
       <div className="movie-content">
         <div className="movie-content__poster">
           <div className="movie-content__poster__img" style={{ backgroundImage: `url(${posterUrl})` }}></div>
@@ -54,7 +54,7 @@ function MovieDetails() {
             <div className="section__header">
               <h2>Casts</h2>
             </div>
-            <div className="casts">
+            <div className='casts'>
               {casts.map((item, i) => (
                 <div key={i} className="casts__item">
                   <div
@@ -70,7 +70,15 @@ function MovieDetails() {
           </div>
         </div>
       </div>
-    </div>
+      {/* Include VideoList component */}
+      <div className="video-section">
+        <VideoList category="movie" id={id} />
+      </div>
+
+      <div>
+        <SimilarMovies category='movie' id={id}/>
+      </div>
+    </div> 
   );
 }
 
