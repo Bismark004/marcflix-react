@@ -6,6 +6,7 @@
   height: 360px;
   margin-top: 32px;
   background-color: #0f0f0f;
+  color: #ffffff;
 }
 
 .head {
@@ -16,12 +17,11 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
-  color: #ff145b80;
+  color:#ffffff;
 }
 
 .head h1 {
   font-family: 'Rubik Scribble', cursive;
-  border: 1px solid red;
 }
 
 .trending p {

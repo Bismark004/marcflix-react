@@ -88,7 +88,7 @@ body {
   font-size: 0.8rem;
   font-weight: 600;
   background-color: #0f0f0f;
-}npm
+}
 
 
 
@@ -115,4 +115,42 @@ body {
 
 .video__title {
   margin-bottom: 1.5rem;
+}
+
+
+
+.similar-movies {
+  margin-top: 3rem;
+  width: 100vw;
+}
+
+.similar-movies .head {
+  margin-bottom: 1rem;
+}
+
+.similar-movies-list {
+  display: flex;
+  overflow-x: auto; /* Allow horizontal scrolling for small screens */
+}
+
+.similar-movie {
+  flex: 0 0 auto; /* Allow items to grow and shrink based on content */
+  margin-right: 1rem;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+}
+
+.similar-movie img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.similar-movie p {
+  font-size: 0.8rem;
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Display ... for overflowed text */
 }

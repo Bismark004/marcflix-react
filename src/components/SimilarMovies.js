@@ -5,24 +5,31 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Link } from 'react-router-dom';
 
+
 function SimilarMovies({ movieId }) {
   const [similarMovies, setSimilarMovies] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     tmdbApi.similar('movie', movieId)
       .then(response => {
-        setSimilarMovies(response.results || []); // Ensure response.results is defined
+        console.log(response.results);
+        setSimilarMovies(response.results || []);
       })
       .catch(error => {
         console.error('Error fetching similar movies:', error);
+        setError(error); // Set the error state
       });
   }, [movieId]);
+
+  if (error) {
+    return <div>Error fetching similar movies. Please try again later.</div>;
+  }
 
   return (
     <div className="similar-movies">
       <div className="head">
         <h1>Similar Movies</h1>
-        {/* You can add a link or button to view more similar movies if needed */}
       </div>
       <Swiper
         spaceBetween={20}

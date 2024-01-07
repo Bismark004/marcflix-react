@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import tmdbApi from '../Api/tmdbApi';
 import VideoList from './VideoList';  // Import VideoList component
 import './MovieDetails.css';
-import SimilarMovies from '../components/SimilarMovies';
-
 
 function MovieDetails() {
   const { id } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
   const [casts, setCasts] = useState([]);
+  const [similarMovies, setSimilarMovies] = useState([]);
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -19,8 +18,11 @@ function MovieDetails() {
 
         const castResponse = await tmdbApi.credits('movie', id);
         setCasts(castResponse.cast.slice(0, 5));
+
+        const similarMoviesResponse = await tmdbApi.similar('movie', id);
+        setSimilarMovies(similarMoviesResponse.results || []); // Use empty array if results is falsy
       } catch (error) {
-        console.error('Error fetching movie details or cast:', error);
+        console.error('Error fetching movie details or cast or similar movies:', error);
       }
     };
 
@@ -36,7 +38,7 @@ function MovieDetails() {
 
   return (
     <div className="movie-details">
-       <div className="banner" style={{ backgroundImage: `url(${backdropUrl})` }}></div>
+      <div className="banner" style={{ backgroundImage: `url(${backdropUrl})` }}></div>
       <div className="movie-content">
         <div className="movie-content__poster">
           <div className="movie-content__poster__img" style={{ backgroundImage: `url(${posterUrl})` }}></div>
@@ -75,10 +77,24 @@ function MovieDetails() {
         <VideoList category="movie" id={id} />
       </div>
 
-      <div>
-        <SimilarMovies category='movie' id={id}/>
+      {/* Render similar movies without Swiper */}
+      <div className="similar-movies">
+        <div className="head">
+          <h1>Similar Movies</h1>
+        </div>
+        <div className="similar-movies-list">
+          {similarMovies.map((movie) => (
+            <Link to={`/movie/${movie.id}`} key={movie.id} className="similar-movie">
+              <img
+                src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
+                alt={movie.title}
+              />
+              <p>{movie.title}</p>
+            </Link>
+          ))}
+        </div>
       </div>
-    </div> 
+    </div>
   );
 }
 
