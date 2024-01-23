@@ -30,13 +30,12 @@ function Homepage() {
     setSearchQuery(event.target.value);
   };
 
-  const filteredResults = searchResults.filter((movie) => movie.poster_path);
-
+  
   return (
     <div className='homepage'>
       <Top handleSearchQuery={handleSearchChange} />
       {searchQuery ? (
-        <SearchResults filteredResults={filteredResults}/>
+        <SearchResults SearchResults={searchResults}/>
        
       ) : (
         <>

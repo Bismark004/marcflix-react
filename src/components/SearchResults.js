@@ -5,7 +5,7 @@ function SearchResults (props) {
 
     return(
         <div className="search-results">
-        {props.filteredResults.map((movie) => (
+        {props.SearchResults.map((movie) => (
           <Link to={`/movie/${movie.id}`} key={movie.id} >
           <div className='movie-grid' key={movie.id}>
             <img
