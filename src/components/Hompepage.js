@@ -14,8 +14,10 @@ function Homepage() {
       try {
         if (searchQuery) {
           // Fetch both movies and TV series based on the search query
-          const movieResponse = await tmdbApi.search('movie', searchQuery, { /* additional search parameters if needed */ });
-          const tvResponse = await tmdbApi.search('tv', searchQuery, { /* additional search parameters if needed */ });
+          const [movieResponse, tvResponse] = await Promise.all([
+            tmdbApi.search('movie', searchQuery),
+            tmdbApi.search('tv', searchQuery)
+          ]);
 
           // Combine movie and TV series results
           setSearchResults([...movieResponse.results, ...tvResponse.results]);
