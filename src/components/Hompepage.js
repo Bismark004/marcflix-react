@@ -1,11 +1,11 @@
+// Homepage.js
+
 import React, { useState, useEffect } from 'react';
 import './Homepage.css';
 import Top from './Top';
-import tmdbApi from '../Api/tmdbApi'
+import tmdbApi from '../Api/tmdbApi';
 import SearchResults from './SearchResults.js';
 import TopTrending from './Top-Trending.js';
-
-
 
 function Homepage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -13,14 +13,22 @@ function Homepage() {
 
   useEffect(() => {
     if (searchQuery) {
-      // Fetch movies based on the search query
+      // Fetch both movies and TV series based on the search query
       tmdbApi
-        .search('movie', { query: searchQuery })
-        .then((response) => {
-          setSearchResults(response.results);
+        .search('movie', searchQuery, { /* additional search parameters if needed */ })
+        .then((movieResponse) => {
+          // Fetch TV series as well
+          tmdbApi.search('tv', searchQuery, { /* additional search parameters if needed */ })
+            .then((tvResponse) => {
+              // Combine movie and TV series results
+              setSearchResults([...movieResponse.results, ...tvResponse.results]);
+            })
+            .catch((tvError) => {
+              console.error('Error fetching TV series search results:', tvError);
+            });
         })
-        .catch((error) => {
-          console.error('Error fetching search results:', error);
+        .catch((movieError) => {
+          console.error('Error fetching movie search results:', movieError);
         });
     }
   }, [searchQuery]);
@@ -30,17 +38,14 @@ function Homepage() {
     setSearchQuery(event.target.value);
   };
 
-  
   return (
     <div className='homepage'>
       <Top handleSearchQuery={handleSearchChange} />
       {searchQuery ? (
-        <SearchResults SearchResults={searchResults}/>
-       
+        <SearchResults SearchResults={searchResults} />
       ) : (
         <>
-           <TopTrending/>
-            
+          <TopTrending />
         </>
       )}
     </div>
