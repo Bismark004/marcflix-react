@@ -36,9 +36,9 @@ const tmdbApi = {
         const response = await fetch(url);
         return response.json();
     },
-    search: async (cate, params) => {
+    search: async (cate, query, params) => {
         const queryParams = new URLSearchParams(params);
-        const url = `${baseURL}/search/${category[cate]}?api_key=${apiKey}&${queryParams.toString()}`;
+        const url = `${baseURL}/search/${category[cate]}?api_key=${apiKey}&query=${query}&${queryParams.toString()}`;
         const response = await fetch(url);
         return response.json();
     },
