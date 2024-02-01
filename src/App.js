@@ -1,5 +1,5 @@
 import './App.css'
-import Homepage from "./components/Hompepage";
+import Homepage from "./components/Homepage";
 import { BrowserRouter,  Routes, Route } from 'react-router-dom';
 import MovieDetails from './pages/MovieDetails';
 
