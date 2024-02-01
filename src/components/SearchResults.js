@@ -2,7 +2,7 @@
 import { Link, Outlet } from 'react-router-dom';
 
 function SearchResults (props) {
-  if (!props.SearchResults || SearchResults.length === 0) {
+  if (!props.SearchResults || props.SearchResults.length === 0) {
     return <p>No results found</p>
   }
 
