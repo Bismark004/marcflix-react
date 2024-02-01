@@ -1,3 +1,5 @@
+// Homepage.js
+
 import React, { useState, useEffect } from 'react';
 import './Homepage.css';
 import Top from './Top';
@@ -10,24 +12,25 @@ function Homepage() {
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    const fetchSearchResults = async () => {
-      try {
-        if (searchQuery) {
-          // Fetch both movies and TV series based on the search query
-          const [movieResponse, tvResponse] = await Promise.all([
-            tmdbApi.search('movie', searchQuery),
-            tmdbApi.search('tv', searchQuery)
-          ]);
-
-          // Combine movie and TV series results
-          setSearchResults([...movieResponse.results, ...tvResponse.results]);
-        }
-      } catch (error) {
-        console.error('Error fetching search results:', error);
-      }
-    };
-
-    fetchSearchResults();
+    if (searchQuery) {
+      // Fetch both movies and TV series based on the search query
+      tmdbApi
+        .search('movie', searchQuery, { /* additional search parameters if needed */ })
+        .then((movieResponse) => {
+          // Fetch TV series as well
+          tmdbApi.search('tv', searchQuery, { /* additional search parameters if needed */ })
+            .then((tvResponse) => {
+              // Combine movie and TV series results
+              setSearchResults([...movieResponse.results, ...tvResponse.results]);
+            })
+            .catch((tvError) => {
+              console.error('Error fetching TV series search results:', tvError);
+            });
+        })
+        .catch((movieError) => {
+          console.error('Error fetching movie search results:', movieError);
+        });
+    }
   }, [searchQuery]);
 
   // Handle search query changes
@@ -39,12 +42,14 @@ function Homepage() {
     <div className='homepage'>
       <Top handleSearchQuery={handleSearchChange} />
       {searchQuery ? (
-        <SearchResults searchResults={searchResults} />
+        <SearchResults SearchResults={searchResults} />
       ) : (
-        <TopTrending />
+        <>
+          <TopTrending />
+        </>
       )}
     </div>
   );
 }
 
-export default Homepage;
+export default Homepage; 
