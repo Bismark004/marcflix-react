@@ -55,4 +55,5 @@ function TrendingSeries () {
 
     )
 }
-export default TrendingSeries;
+export default TrendingSeries; 
+
