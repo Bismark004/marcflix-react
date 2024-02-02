@@ -1,33 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import tmdbApi from '../Api/tmdbApi';
-import VideoList from './VideoList';  // Import VideoList component
+import VideoList from './VideoList';
 import './MovieDetails.css';
 
 function MovieDetails() {
   const { id } = useParams();
+  const [mediaType, setMediaType] = useState('movie'); // Default to 'movie'
   const [movieDetails, setMovieDetails] = useState(null);
   const [casts, setCasts] = useState([]);
-  const [similarMovies, setSimilarMovies] = useState([]);
+  const [similarMedia, setSimilarMedia] = useState([]);
 
   useEffect(() => {
-    const fetchMovieDetails = async () => {
+    const fetchMediaDetails = async () => {
       try {
-        const movieResponse = await tmdbApi.detail('movie', id);
-        setMovieDetails(movieResponse);
+        // Use the 'detail' function based on the mediaType (movie or tv)
+        const mediaResponse = await tmdbApi.detail(mediaType, id);
+        setMovieDetails(mediaResponse);
 
-        const castResponse = await tmdbApi.credits('movie', id);
+        const castResponse = await tmdbApi.credits(mediaType, id);
         setCasts(castResponse.cast.slice(0, 5));
 
-        const similarMoviesResponse = await tmdbApi.similar('movie', id);
-        setSimilarMovies(similarMoviesResponse.results || []); // Use empty array if results is falsy
+        const similarMediaResponse = await tmdbApi.similar(mediaType, id);
+        setSimilarMedia(similarMediaResponse.results || []);
       } catch (error) {
-        console.error('Error fetching movie details or cast or similar movies:', error);
+        console.error('Error fetching media details or cast or similar media:', error);
       }
     };
 
-    fetchMovieDetails();
-  }, [id]);
+    fetchMediaDetails();
+  }, [id, mediaType]);
+
+  useEffect(() => {
+    // Set the mediaType based on the URL path
+    const path = window.location.pathname;
+    setMediaType(path.includes('/movie/') ? 'movie' : 'tv');
+  }, []);
 
   if (!movieDetails) {
     return <div className="loading">Loading...</div>;
@@ -74,22 +82,22 @@ function MovieDetails() {
       </div>
       {/* Include VideoList component */}
       <div className="video-section">
-        <VideoList category="movie" id={id} />
+        <VideoList category={mediaType} id={id} />
       </div>
 
-      {/* Render similar movies without Swiper */}
-      <div className="similar-movies">
+      {/* Render similar media (movies or TV series) without Swiper */}
+      <div className="similar-media">
         <div className="head">
-          <h1>Similar Movies</h1>
+          <h1>Similar {mediaType === 'movie' ? 'Movies' : 'TV Series'}</h1>
         </div>
-        <div className="similar-movies-list">
-          {similarMovies.map((movie) => (
-            <Link to={`/movie/${movie.id}`} key={movie.id} className="similar-movie">
+        <div className="similar-media-list">
+          {similarMedia.map((media) => (
+            <Link to={`/${mediaType}/${media.id}`} key={media.id} className="similar-media-item">
               <img
-                src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
-                alt={movie.title}
+                src={`https://image.tmdb.org/t/p/w342/${media.poster_path}`}
+                alt={media.title || media.name}
               />
-              <p>{movie.title}</p>
+              <p>{media.title || media.name}</p>
             </Link>
           ))}
         </div>
