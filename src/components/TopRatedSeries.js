@@ -16,7 +16,7 @@ function TopRatedSeries() {
         setTrendingMovies(response.results);
       })
       .catch(error => {
-        console.error('Error fetching popular movies:', error);
+        console.error('Error fetching trending series:', error);
       });
   }, []);
 
@@ -34,16 +34,16 @@ function TopRatedSeries() {
          spaceBetween={20}
          slidesPerView={4}
          navigation>
-        {trendingMovies.map((movie) => (
+        {trendingMovies.map((tvSeries) => (
           
-          <SwiperSlide key={movie.id}>
-          <Link to={`/movie/${movie.id}`} key={movie.id} >
+          <SwiperSlide key={tvSeries.id}>
+          <Link to={`/movie/${tvSeries.id}`} key={tvSeries.id} >
             <img
-              src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
-              alt={movie.title}
+              src={`https://image.tmdb.org/t/p/w342/${tvSeries.poster_path}`}
+              alt={tvSeries.title}
             />
         
-              <p>{movie.original_name}</p>
+              <p>{tvSeries.original_name}</p>
             
             </Link>
           </SwiperSlide>
