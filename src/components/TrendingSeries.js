@@ -7,15 +7,15 @@ import './TrendingSeries.css';
 import {  Link, Outlet } from 'react-router-dom';
 
 function TrendingSeries () {
-    const [trendingMovies, setTrendingMovies] = useState([])
+    const [TrendingSeries, setTrendingSeries] = useState([])
 
     useEffect(() => {
         tmdbApi.getTvList('popular')
           .then(response => {
-            setTrendingMovies(response.results);
+            setTrendingSeries(response.results);
           })
           .catch(error => {
-            console.error('Error fetching popular movies:', error);
+            console.error('Error fetching popular series:', error);
           });
       }, []);
     
@@ -34,7 +34,7 @@ function TrendingSeries () {
            spaceBetween={20}
            slidesPerView={4}
            navigation>
-          {trendingMovies.map((tvSeries) => (
+          {TrendingSeries.map((tvSeries) => (
             
             <SwiperSlide key={tvSeries.id}>
             <Link to={`tv/${tvSeries.id}`} key={tvSeries.id} >
