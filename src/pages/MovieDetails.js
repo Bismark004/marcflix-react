@@ -1,48 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import tmdbApi from '../Api/tmdbApi';
-import VideoList from './VideoList';
+import VideoList from './VideoList';  // Import VideoList component
 import './MovieDetails.css';
 
 function MovieDetails() {
   const { id } = useParams();
-  const [mediaType, setMediaType] = useState('movie'); // Default to 'movie'
-  const [details, setDetails] = useState(null);
+  const [movieDetails, setMovieDetails] = useState(null);
   const [casts, setCasts] = useState([]);
-  const [similarMedia, setSimilarMedia] = useState([]);
+  const [similarMovies, setSimilarMovies] = useState([]);
 
   useEffect(() => {
-    const fetchDetails = async () => {
+    const fetchMovieDetails = async () => {
       try {
-        // Determine the media type based on the URL
-        const pathSegments = window.location.pathname.split('/');
-        const currentMediaType = pathSegments[1];
-        setMediaType(currentMediaType);
+        const movieResponse = await tmdbApi.detail('movie', id);
+        setMovieDetails(movieResponse);
 
-        // Fetch details based on the determined media type
-        const response = await tmdbApi.detail(currentMediaType, id);
-        setDetails(response);
-
-        // Fetch additional data (casts, similar media) based on the determined media type
-        const castResponse = await tmdbApi.credits(currentMediaType, id);
+        const castResponse = await tmdbApi.credits('movie', id);
         setCasts(castResponse.cast.slice(0, 5));
 
-        const similarMediaResponse = await tmdbApi.similar(currentMediaType, id);
-        setSimilarMedia(similarMediaResponse.results || []);
+        const similarMoviesResponse = await tmdbApi.similar('movie', id);
+        setSimilarMovies(similarMoviesResponse.results || []); // Use empty array if results is falsy
       } catch (error) {
-        console.error('Error fetching details:', error);
+        console.error('Error fetching movie details or cast or similar movies:', error);
       }
     };
 
-    fetchDetails();
+    fetchMovieDetails();
   }, [id]);
 
-  if (!details) {
+  if (!movieDetails) {
     return <div className="loading">Loading...</div>;
   }
 
-  const posterUrl = `https://image.tmdb.org/t/p/w342/${details.poster_path}`;
-  const backdropUrl = `https://image.tmdb.org/t/p/original/${details.backdrop_path || details.poster_path}`;
+  const posterUrl = `https://image.tmdb.org/t/p/w342/${movieDetails.poster_path}`;
+  const backdropUrl = `https://image.tmdb.org/t/p/original/${movieDetails.backdrop_path || movieDetails.poster_path}`;
 
   return (
     <div className="movie-details">
@@ -52,55 +44,53 @@ function MovieDetails() {
           <div className="movie-content__poster__img" style={{ backgroundImage: `url(${posterUrl})` }}></div>
         </div>
         <div className="movie-content__info">
-          <h1 className="title">{details.title || details.name}</h1>
+          <h1 className="title">{movieDetails.title || movieDetails.name}</h1>
           <div className="genres">
-  {details.genres && details.genres.slice(0, 5).map((genre, i) => (
-    <span key={i} className="genres__item">{genre.name}</span>
-  ))}
-</div>
-<p className="overview">{details.overview}</p>
-{/* Cast rendering */}
-<div className="cast">
-  <div className="section__header">
-    <h2>Casts</h2>
-  </div>
-  <div className='casts'>
-    {casts.map((item, i) => (
-      <div key={i} className="casts__item">
-        <div
-          className="casts__item__img"
-          style={{
-            backgroundImage: `url(https://image.tmdb.org/t/p/w500${item.profile_path})`,
-          }}
-        ></div>
-        <p className="casts__item__name">{item.name}</p>
-      </div>
-    ))}
-  </div>
-</div>
-
+            {movieDetails.genres && movieDetails.genres.slice(0, 5).map((genre, i) => (
+              <span key={i} className="genres__item">{genre.name}</span>
+            ))}
+          </div>
+          <p className="overview">{movieDetails.overview}</p>
+          {/* Cast rendering */}
+          <div className="cast">
+            <div className="section__header">
+              <h2>Casts</h2>
+            </div>
+            <div className='casts'>
+              {casts.map((item, i) => (
+                <div key={i} className="casts__item">
+                  <div
+                    className="casts__item__img"
+                    style={{
+                      backgroundImage: `url(https://image.tmdb.org/t/p/w500${item.profile_path})`,
+                    }}
+                  ></div>
+                  <p className="casts__item__name">{item.name}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
-
       {/* Include VideoList component */}
       <div className="video-section">
-        <VideoList category={mediaType} id={id} />
+        <VideoList category="movie" id={id} />
       </div>
 
-      {/* Render similar media without Swiper */}
-      <div className="similar-media">
+      {/* Render similar movies without Swiper */}
+      <div className="similar-movies">
         <div className="head">
-          <h1>Similar {mediaType === 'movie' ? 'Movies' : 'TV Series'}</h1>
+          <h1>Similar Movies</h1>
         </div>
-        <div className="similar-media-list">
-          {similarMedia.map((media) => (
-            <div key={media.id}>
+        <div className="similar-movies-list">
+          {similarMovies.map((movie) => (
+            <Link to={`/movie/${movie.id}`} key={movie.id} className="similar-movie">
               <img
-                src={`https://image.tmdb.org/t/p/w342/${media.poster_path}`}
-                alt={media.title || media.name}
+                src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
+                alt={movie.title}
               />
-              <p>{media.title || media.name}</p>
-            </div>
+              <p>{movie.title}</p>
+            </Link>
           ))}
         </div>
       </div>
