@@ -8,12 +8,12 @@ import {  Link, Outlet } from 'react-router-dom';
 
 
 function TopRatedSeries() {
-  const [trendingMovies, setTrendingMovies] = useState([]);
+  const [topSeries, setTopSeries] = useState([]);
 
   useEffect(() => {
     tmdbApi.getTvList('top_rated')
       .then(response => {
-        setTrendingMovies(response.results);
+        setTopSeries(response.results);
       })
       .catch(error => {
         console.error('Error fetching trending series:', error);
@@ -34,7 +34,7 @@ function TopRatedSeries() {
          spaceBetween={20}
          slidesPerView={4}
          navigation>
-        {trendingMovies.map((tvSeries) => (
+        {topSeries.map((tvSeries) => (
           
           <SwiperSlide key={tvSeries.id}>
           <Link to={`/movie/${tvSeries.id}`} key={tvSeries.id} >
