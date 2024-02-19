@@ -11,25 +11,25 @@ function MovieDetails() {
   const [similarMovies, setSimilarMovies] = useState([]);
 
   useEffect(() => {
-    const fetchMovieDetails = async (category, id) => {
+    const fetchMovieDetails = async () => {
       try {
-        const detailsResponse = await tmdbApi.detail(category, id);
-        setMovieDetails(detailsResponse);
+        const category = window.location.pathname.startsWith('/movie') ? 'movie' : 'tv';
+        const response = await tmdbApi.detail(category, id);
+        setMovieDetails(response);
 
-        const castResponse = await tmdbApi.credits(category, id);
+        const castResponse = await tmdbApi.credits();
         setCasts(castResponse.cast.slice(0, 5));
 
-        const similarMoviesResponse = await tmdbApi.similar(category, id);
+        const similarMoviesResponse = await tmdbApi.similar();
         setSimilarMovies(similarMoviesResponse.results || []); // Use empty array if results is falsy
       } catch (error) {
         console.error('Error fetching $(category) details or cast or similar movies:', error);
       }
     };
 
-    //Determine the category based on the URL
-    const category = window.location.pathname.startsWith('/movie') ? 'movie' : 'tv';
+    
 
-    fetchMovieDetails(category);
+    fetchMovieDetails();
   }, [id]);
 
   if (!movieDetails) {
