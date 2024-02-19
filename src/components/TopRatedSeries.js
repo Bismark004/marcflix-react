@@ -34,16 +34,16 @@ function TopRatedSeries() {
          spaceBetween={20}
          slidesPerView={4}
          navigation>
-        {topSeries.map((tvSeries) => (
+        {topSeries.map((tv) => (
           
-          <SwiperSlide key={tvSeries.id}>
-          <Link to={`/movie/${tvSeries.id}`} key={tvSeries.id} >
+          <SwiperSlide key={tv.id}>
+          <Link to={`/movie/${tv.id}`} key={tv.id} >
             <img
-              src={`https://image.tmdb.org/t/p/w342/${tvSeries.poster_path}`}
-              alt={tvSeries.title}
+              src={`https://image.tmdb.org/t/p/w342/${tv.poster_path}`}
+              alt={tv.title}
             />
         
-              <p>{tvSeries.original_name}</p>
+              <p>{tv.original_name}</p>
             
             </Link>
           </SwiperSlide>
