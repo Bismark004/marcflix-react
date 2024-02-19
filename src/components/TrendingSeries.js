@@ -34,10 +34,10 @@ function TrendingSeries () {
            spaceBetween={20}
            slidesPerView={4}
            navigation>
-          {TrendingSeries.map((tv) => (
+          {TrendingSeries.map(tv => (
             
             <SwiperSlide key={tv.id}>
-            <Link to={`tv/${tv.id}`} key={tv.id} >
+            <Link to={`/tv/${tv.id}`}>
               <img
                 src={`https://image.tmdb.org/t/p/w342/${tv.poster_path}`}
                 alt={tv.title}
