@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import './Homepage.css';
-import Top from './Top';
-import tmdbApi from '../Api/tmdbApi';
+import Top from './Top.js';
+import tmdbApi from '../Api/tmdbApi.js';
 import SearchResults from './SearchResults.js';
 import TopTrending from './Top-Trending.js';
 
