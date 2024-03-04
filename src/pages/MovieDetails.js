@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import tmdbApi from '../Api/tmdbApi';
-import VideoList from './VideoList';  // Import VideoList component
+import VideoList from './VideoList';  
 import './MovieDetails.css';
 
 function MovieDetails() {
@@ -17,11 +17,11 @@ function MovieDetails() {
         const response = await tmdbApi.detail(category, id);
         setMovieDetails(response);
 
-        const castResponse = await tmdbApi.credits();
+        const castResponse = await tmdbApi.credits(category, id);
         setCasts(castResponse.cast.slice(0, 5));
 
-        const similarMoviesResponse = await tmdbApi.similar();
-        setSimilarMovies(similarMoviesResponse.results || []); // Use empty array if results is falsy
+      const similarMoviesResponse = await tmdbApi.similar(category, id);
+        setSimilarMovies(similarMoviesResponse.results || []); 
       } catch (error) {
         console.error('Error fetching $(category) details or cast or similar movies:', error);
       }
