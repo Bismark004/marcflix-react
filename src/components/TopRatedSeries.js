@@ -24,11 +24,7 @@ function TopRatedSeries() {
     <div className="trending">
       <div className="head">
         <h1>Top-Rated Series</h1>
-        <div class='btn-container'>
-          <a class='btn-content' href>
-            <span class='btn-title'>See More <b>&gt;</b></span>
-          </a>
-        </div>
+        
       </div>
         <Swiper
          spaceBetween={20}

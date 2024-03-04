@@ -22,11 +22,7 @@ function TopRated() {
     <div className="trending">
       <div className="head">
         <h1>Top-Rated Movies</h1>
-        <div className='btn-container'>
-          <Link to="/" className='btn-content'>
-            <span className='btn-title'>See More <b>&gt;</b></span>
-          </Link>
-        </div>
+        
       </div>
       <Swiper
         spaceBetween={20}

@@ -23,11 +23,7 @@ function Trending() {
     <div className="trending">
       <div className="head">
         <h1>Trending Movies</h1>
-        <div className='btn-container'>
-          <a className='btn-content' href>
-            <span className='btn-title'>See More <b>&gt;</b></span>
-          </a>
-        </div>
+        
       </div>
       <Swiper
          spaceBetween={20}
