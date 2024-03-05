@@ -1,5 +1,6 @@
 /* Homepage.css */
 
+
 .homepage {
     background-image: url('../Assets/Poster.png');
     background-size: cover;
@@ -10,7 +11,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #0f0f0f;
   }
   
   .search-results {

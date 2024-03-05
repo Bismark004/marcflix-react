@@ -26,7 +26,7 @@ function TopRated() {
       </div>
       <Swiper
         spaceBetween={20}
-        slidesPerView={4}
+        slidesPerView={3}
         navigation
       >
         {trendingMovies.map((movie) => (

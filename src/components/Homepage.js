@@ -5,8 +5,11 @@ import './Homepage.css';
 import Top from './Top.js';
 import tmdbApi from '../Api/tmdbApi.js';
 import SearchResults from './SearchResults.js';
+import SideBar from './SideBar.js';
 import TopTrending from './Top-Trending.js';
-import Sidebar from './sidebar.js';
+
+
+
 
 function Homepage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -41,13 +44,13 @@ function Homepage() {
 
   return (
     <div className='homepage'>
-      <Sidebar/>
-      <Top handleSearchQuery={handleSearchChange} />
+      <SideBar handleSearchQuery={handleSearchChange}/>
+      <Top  />
       {searchQuery ? (
         <SearchResults SearchResults={searchResults} />
       ) : (
         <>
-          <TopTrending />
+          <TopTrending/>
         </>
       )}
     </div>
