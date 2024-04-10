@@ -1,9 +1,10 @@
-/* Variables */
+
 body {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   color: #fff;
+  margin-left: 6.4vw;
 }
 
 .banner {

@@ -3,6 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import tmdbApi from '../Api/tmdbApi';
 import VideoList from './VideoList';  
 import './MovieDetails.css';
+import '../components/SideBar';
+import Sidebar from '../components/SideBar';
 
 function MovieDetails() {
   const { id } = useParams();
@@ -41,6 +43,7 @@ function MovieDetails() {
 
   return (
     <div className="movie-details">
+      <Sidebar />
       <div className="banner" style={{ backgroundImage: `url(${backdropUrl})` }}></div>
       <div className="movie-content">
         <div className="movie-content__poster">

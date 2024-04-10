@@ -131,13 +131,8 @@
     transition: var(--tran-05);
   }
   
-  body.dark .sidebar header .toggle {
-    color: var(--text-color);
-  }
-  
-  .sidebar.close .toggle {
-    transform: translateY(-50%) rotate(0deg);
-  }
+ 
+
   
   .sidebar .menu {
     margin-top: 40px;

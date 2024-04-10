@@ -51,8 +51,9 @@ const Video = ({ item }) => {
       <iframe
         src={`https://www.youtube.com/embed/${item.key}`}
         ref={iframeRef}
-        width="100%"
+        width="80%"
         title="video"
+        controls
       ></iframe>
     </div>
   );
