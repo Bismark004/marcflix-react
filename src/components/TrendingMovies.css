@@ -7,11 +7,11 @@
   margin-top: 32px;
   background-color: #2b2e38;
   color: #ffffff;
-  margin-left: 6.5vw;
+  
 }
 
 .head {
-  width: calc(93.5vw - 20);
+  width: calc(93.5vw - 20px);
   height: 60px;
   padding: 0 8px;
   display: flex;

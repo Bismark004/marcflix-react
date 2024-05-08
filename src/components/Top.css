@@ -13,59 +13,5 @@
 
 }
 
-.menu-img {
-    order: 1; 
-}
 
-.logo {
-    display: flex;
-    order: 2; 
-    align-items: center;
-    
-}
-
-.logo h2 {
-    color: rgb(212, 47, 47);
-    font-family: 'Black Ops One', cursive;
-    font-size: 40px;
-    font-weight: 900;
-    line-height: 60px;
-    display: block;
-    margin-left: 0;
-    
-}
-
-.logo img{
-    height: 60px;
-    width: 60px;
-
-}
-
-input {
-    width: 100%;
-    max-width: 320px; 
-    height: 80%;
-    border-radius: 8px;
-    order: 3;
-    margin-top: 8px; 
-    background-color: transparent;
-    color: #fff;
-}
-
-input::placeholder {
-    color: white;
-    text-align: center;
-}
-
-@media (max-width: 576px) {
-    input {
-        width: 80%; 
-        max-width: none; 
-        margin: 12px auto; 
-    }
-
-
-
-    
-}
 
