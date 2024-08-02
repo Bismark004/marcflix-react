@@ -1,5 +1,13 @@
 /* Homepage.css */
 
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+
+
 
 .homepage {
     background-image: url('../Assets/Poster.png');
@@ -7,10 +15,7 @@
     background-position: center;
     background-repeat: no-repeat;
     height: 30vh;
-    width: calc(100vw - 16px);
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    width: 100%;
   }
   
   .search-results {
@@ -18,8 +23,10 @@
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 16px;
     padding: 16px; 
+    width: 100%;
     background-color: black;
     color: aliceblue;
+    outline: 1px solid red;
   }
   
   .movie-grid {
@@ -28,11 +35,11 @@
   }
 
   .movie-grid:hover{
-    transform: scale(1.2);
+    transform: scale(1.05);
   }
   
   .movie-grid img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
   }
   

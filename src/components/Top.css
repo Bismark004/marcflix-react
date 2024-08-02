@@ -3,7 +3,7 @@
 
 .top {
     height: 10vh;
-    width: calc(100vw - 16px);
+    width: 100%;
     display: flex;
     flex-wrap: wrap; 
     justify-content: space-between;

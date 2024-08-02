@@ -2,16 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap');
 
 .trending {
-  width: calc(93.5vw - 16px);
+  width: 93.5vw;
   height: 360px;
   margin-top: 32px;
   background-color: #2b2e38;
   color: #ffffff;
+  margin-left: 6.4vw;
   
 }
 
 .head {
-  width: calc(93.5vw - 20px);
+  width: calc(93.5vw - 16px);
   height: 60px;
   padding: 0 8px;
   display: flex;

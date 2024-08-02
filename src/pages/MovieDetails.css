@@ -1,10 +1,18 @@
 
-body {
+
+.movie-details-wrapper {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   color: #fff;
   margin-left: 6.4vw;
+  
+}
+
+.movie-details {
+  max-width: 100vw;
+  overflow-x: hidden;
+  flex: 1;
 }
 
 .banner {
@@ -15,35 +23,34 @@ body {
   background-repeat: no-repeat;
 }
 
-.banner::before {
+.banner::before,
+.banner::after {
   content: "";
   position: absolute;
-  top: 0;
   left: 0;
   width: 100%;
+}
+
+.banner::before {
+  top: 0;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
 }
 
 .banner::after {
-  content: "";
-  position: absolute;
   bottom: 0;
-  left: 0;
-  width: 100%;
   height: 100px;
   background-image: linear-gradient(to top, #0f0f0f, rgba(0, 0, 0, 0));
 }
 
 .movie-content {
-  max-width: 1260px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: -200px;
+  max-width: 100vw;
+  margin: -200px auto 0;
   position: relative;
   padding: 0 2rem;
   display: flex;
   align-items: flex-start;
+  overflow-x: hidden;
 }
 
 .movie-content__poster {
@@ -51,9 +58,7 @@ body {
 }
 
 .movie-content__poster__img {
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background: center / cover no-repeat;
   border-radius: 30px;
   padding-top: 165%;
 }
@@ -64,7 +69,7 @@ body {
   position: relative;
 }
 
-.movie-content__info>* {
+.movie-content__info > * {
   margin-bottom: 2rem;
 }
 
@@ -80,9 +85,8 @@ body {
 }
 
 .genres__item {
-  flex: 0 0 auto; /* Allow items to grow and shrink based on content */
-  margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
+  flex: 0 0 auto;
+  margin: 0 0.5rem 0.5rem 0;
   padding: 0.5rem 1.5rem;
   border: 2px solid #fff;
   border-radius: 30px;
@@ -90,9 +94,6 @@ body {
   font-weight: 600;
   background-color: #0f0f0f;
 }
-
-
-
 
 .casts {
   display: grid;
@@ -110,7 +111,7 @@ body {
   font-size: 0.8rem;
 }
 
-.video {
+.video-section {
   margin-bottom: 3rem;
 }
 
@@ -118,11 +119,10 @@ body {
   margin-bottom: 1.5rem;
 }
 
-
-
 .similar-movies {
   margin-top: 3rem;
-  width: 100vw;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 .similar-movies .head {
@@ -131,11 +131,11 @@ body {
 
 .similar-movies-list {
   display: flex;
-  overflow-x: auto; /* Allow horizontal scrolling for small screens */
+  overflow-x: auto;
 }
 
 .similar-movie {
-  flex: 0 0 auto; /* Allow items to grow and shrink based on content */
+  flex: 0 0 auto;
   margin-right: 1rem;
   text-align: center;
   text-decoration: none;
@@ -151,7 +151,7 @@ body {
 
 .similar-movie p {
   font-size: 0.8rem;
-  white-space: nowrap; /* Prevent text from wrapping */
+  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; /* Display ... for overflowed text */
+  text-overflow: ellipsis;
 }
